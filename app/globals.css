@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 244 244 245;
+  --panel: 255 255 255;
+  --text: 17 24 39;
+}
+
+.dark {
+  --bg: 10 10 11;
+  --panel: 24 24 27;
+  --text: 243 244 246;
+}
+
+body {
+  @apply bg-bg text-text;
+}
+
+.card {
+  @apply rounded-xl border border-zinc-200 dark:border-zinc-800 bg-panel p-4 shadow-sm;
+}

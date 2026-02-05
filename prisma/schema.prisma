@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum AssetType {
+  STOCK
+  CRYPTO
+}
+
+enum TradeStatus {
+  OPEN
+  CLOSED
+}
+
+model WatchlistItem {
+  id        Int       @id @default(autoincrement())
+  assetType AssetType
+  symbol    String
+  createdAt DateTime  @default(now())
+}
+
+model Trade {
+  id          Int         @id @default(autoincrement())
+  assetType   AssetType
+  symbol      String
+  strategy    String
+  side        String
+  entry       Float
+  stop        Float
+  targetsJson String
+  qty         Float
+  status      TradeStatus @default(OPEN)
+  openedAt    DateTime    @default(now())
+  closedAt    DateTime?
+  openPrice   Float
+  closePrice  Float?
+  pnl         Float?
+  pnlPct      Float?
+}
